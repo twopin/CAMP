@@ -1,5 +1,5 @@
 # CAMP: a Convolutional Attention-based Neural Network for Multifaceted Peptide-protein Interaction Prediction
-![alt text](https://i.ibb.co/41jQ2C5/ehr-structure.png "Network architecure of CAMP")
+![alt text](https://i.ibb.co/StFpq22/fig1-1021.jpg)
 
 CAMP is a sequence-based deep learning framework for multifaceted prediction of peptide-protein interactions, including not only binary peptide-protein interactions, but also corresponding peptide binding residues.
 
