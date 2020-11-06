@@ -6,14 +6,14 @@ CAMP is a sequence-based deep learning framework for multifaceted prediction of 
 
 Since CAMP exploits a series of sequence-based features, you CANNOT use CAMP when the primary sequence information of peptides and proteins is unknown. In addition, you need to replace any non-standard amino acid with 'X' first.
 
-### Requirment
+### Requirement
 
 Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (for data preprocessing), CUDA (GPU computation)
 
 ### Running CAMP
 
-1. To test the code, use the test data with the command `python -u train_camp.py ./test_data`.
-2. To reproduce the data described in the paper, please refer to the instructuion in Data Preparation. 
+1. To test the code, use the test data with the command `python -u train_camp.py ./test/example_data`.
+2. To reproduce the data described in the paper, please refer to the instructuion in "Train CAMP from scratch".
 
 
 ### Predict novel pairs
