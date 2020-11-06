@@ -32,13 +32,12 @@ Here we offer the protocol to construct the benchmark dataset. Due to the copyri
 - STEP 2: Generate labels of peptide binding residues of PepPIs from PDB by the functions and detailed procedures in ./data_prepare/step2_pepBDB_pep_bindingsites.py
 
 - STEP 3: Generated sequnece-based features
-
 Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative samples. After that, you need to generate the corresponding features (you can either use the online servers or download the softwares):
 
-1. Secondary structure : http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro
-2. Intrinsic Disorder :  https://iupred2a.elte.hu/
-3. PSSM matrix: ftp://ftp.cnbi.nlm.nih.gov/blast/executables/blast+/LATEST/
-4. Use the functions in ./data_prepare/step3_generate_features.py to process raw output files. Then put all feature dicts in ./dense_feature_dict/
+	1. Secondary structure : http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro
+	2. Intrinsic Disorder :  https://iupred2a.elte.hu/
+	3. PSSM matrix: ftp://ftp.cnbi.nlm.nih.gov/blast/executables/blast+/LATEST/
+	4. Use the functions in ./data_prepare/step3_generate_features.py to process raw output files. Then put all feature dicts in ./dense_feature_dict/
 
 - STEP 4: Proprecess data with feature dictionaries
 
