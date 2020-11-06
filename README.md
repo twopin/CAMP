@@ -12,7 +12,7 @@ Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (for data preprocessing), CUDA (
 
 ### Running CAMP
 
-1. To test the code, use the test data with the command `python -u train_CAMP.py ./test/example_data`.
+1. To test the code, use the test data with the command `python -u train_CAMP.py ./sample_data` for multi-objective prediction tasks or `python -u train_CAMP_binary.py ./sample_data` for binary prediction task.
 2. To reproduce the data described in the paper, please refer to the instructuion in "Data curation".
 
 
@@ -53,6 +53,6 @@ Here we offer the protocol to construct the benchmark dataset. Due to the copyri
 
 - STEP 3: Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative samples. After that, generate sequence-based features and process the data (see STEP 0 & STEP 1 in "Predict novel pairs", you may name the data as "train_filename")
 
-- STEP 4: use the functions in ./Cluster.py to split clusters of peptides and proteins based on sequence similarity.
+- STEP 4: For cluster-based cross validations, you can get alignment results from https://github.com/mengyao/Complete-Striped-Smith-Waterman-Library and use the scripts in ./cluster/ to obtain the similarity matrix and split clusters of peptides and proteins based on the similarity matrix.
 
 
