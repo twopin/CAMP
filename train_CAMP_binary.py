@@ -155,7 +155,7 @@ def load(input_file):
 	peptide_sequence, protein_sequence, Y = [], [], []
 	with open(datafile) as f:
 		for line in f.readlines()[1:]:
-			seq, peptide, label, pep_ss, seq_ss  = line.strip().split('\t')
+			seq, peptide, label, pep_ss, seq_ss, pep_bs  = line.strip().split('\t')
 
 			peptide_sequence.append(peptide)
 			protein_sequence.append(seq)
