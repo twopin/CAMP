@@ -8,7 +8,7 @@ Since CAMP exploits a series of sequence-based features, you CANNOT use CAMP whe
 
 ### Requirement
 
-Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (for data preprocessing), CUDA (GPU computation)
+Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (data preprocessing), CUDA (GPU computation)
 
 ### Running CAMP
 
