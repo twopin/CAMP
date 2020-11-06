@@ -20,7 +20,7 @@ Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (for data preprocessing), CUDA (
 
 Here we offer the protocol and some sample data. Due to the copyright issues, we can not provide the complete benchmark dataset. You may follow the procedures in ./data/ to reproduce the benchmark dataset. 
 
--STEP 0: Downloading data from three sources (skip this step if you have your own data)
+- STEP 0: Downloading data from three sources (skip this step if you have your own data)
 
 1. RCSB PDB : Download the fasta files from ftp://ftp.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt.gz and pdb files 
 	
@@ -28,22 +28,22 @@ Here we offer the protocol and some sample data. Due to the copyright issues, we
 
 3. DrugBank : Download full database.xml from DrugBank, to access the data, you need to create an account first. (requiring licenses)
 
--STEP 1: Process PDB data
+- STEP 1: Process PDB data
 
 ### Predict novel pairs
 
 To predict your own data, you need to have the amino acid sequences of the peptide-protein pairs. Then you need to generate the corresponding features (you can either use the online servers or download the softwares):
 
--STEP 0: Generated sequnece-based features
+- STEP 0: Generated sequnece-based features
 
 1. Secondary structure : http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro
 2. Intrinsic Disorder :  https://iupred2a.elte.hu/
 3. PSSM matrix: ftp://ftp.cnbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 4. Use the functions in ./features/step3_generate_features.py to process raw output files. Then put all feature dicts in ./dense_feature_dict/
 
--STEP 1: Proprecess data with feature file
+- STEP 1: Proprecess data with feature file
 1. format the pepitde-protein data like (protein sequence, peptide sequence, protein_ss, peptide_ss)
 2. Use the command 'python preprocess_features.py' to obtain processed feature dicts in ./preprocessing/
 
--STEP 2: Make predictions by the CAMP model
+- STEP 2: Make predictions by the CAMP model
 To predict binary peptide-protein interactions with corresponding peptide binding residues, use the command `python -u predict_camp.py`. 
