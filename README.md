@@ -1,4 +1,4 @@
-# CAMP: a Convolutional Attention-based Neural Network for Multifaceted Peptide-protein Interaction Prediction
+# CAMP: a Convolutional Attention-based Neural Network for Multi-level Peptide-protein Interaction Prediction
 
 CAMP is a sequence-based deep learning framework for multifaceted prediction of peptide-protein interactions, including not only binary peptide-protein interactions, but also corresponding peptide binding residues.
 
@@ -8,11 +8,12 @@ Since CAMP exploits a series of sequence-based features, you CANNOT use CAMP whe
 
 ### Requirement
 
+Trained and tested on a linux server with GeForce GTX 1080 and the running environment is as follows:
 Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (data preprocessing), CUDA (GPU computation)
 
 ### Running CAMP
 
-1. To test the code, use the test data with the command `python -u train_CAMP.py ./sample_data` for multi-objective prediction tasks or `python -u train_CAMP_binary.py ./sample_data` for binary prediction task.
+1. To predict with our example code, use the test data with the command `python -u predict_CAMP.py`.
 2. To reproduce the data described in the paper, please refer to the instructuion in "Data curation".
 
 ### Data curation
