@@ -13,7 +13,7 @@ Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (data preprocessing), CUDA (GPU 
 
 ### Running CAMP
 
-1. To predict with our example code, first unzip the feature dictionaries by `unzip example_data_feature.zip` and use the test data with the command `python -u predict_CAMP.py`.
+1. To predict with our example code, first create a directory `example_prediction` and unzip the feature dictionaries by `unzip example_data_feature.zip` and use the test data with the command `python -u predict_CAMP.py`.
 Options are:  
 `-b: The batch size, default: 256.`  
 `-l: The padding length for peptides, default: 50.`  
