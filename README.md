@@ -48,7 +48,7 @@ Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative sa
 
 - STEP 4: Proprecess data with feature dictionaries
 
-1. format the pepitde-protein data like (protein sequence, peptide sequence, protein_ss, peptide_ss) and generate a test data file called "test_filename" for 
+1. format the peptide-protein data like (protein sequence, peptide sequence, protein_ss, peptide_ss) and generate a test data file called "test_filename" for 
 2. Use the command `python -u preprocess_features.py test_filename` to obtain processed feature dicts in ./preprocessing/
 
 ### License
