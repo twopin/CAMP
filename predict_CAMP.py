@@ -97,7 +97,7 @@ def load_example(model_mode):
 
 
 	
-	datafile = './example_data.tsv'
+	datafile = 'example_data.tsv'
 	print('load feature dict')
 	X_pep, X_p, X_SS_pep, X_SS_p, X_2_pep, X_2_p = [], [], [], [], [], []
 	X_dense_pep,X_dense_p = [],[]
