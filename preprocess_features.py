@@ -111,7 +111,7 @@ if __name__ == '__main__':
 	np.save('./preprocessing/_pad_prot_len',pad_prot_len)
 
 
-	# load raw dense features
+	# load raw dense features, the directory dense_feature_dict and proprocessing need to be created first.
 	with open('./dense_feature_dict/Protein_pssm_dict') as f: # value: (sequence_length, 20) without sigmoid
 		protein_pssm_dict = pickle.load(f)
 
