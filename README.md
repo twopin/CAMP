@@ -9,7 +9,7 @@ Since CAMP exploits a series of sequence-based features, you CANNOT use CAMP whe
 ### Requirement
 
 Trained and tested on a linux server with GeForce GTX 1080 and the running environment is as follows:
-Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (data preprocessing), CUDA (GPU computation)
+Python2.7, Keras=2.0.8, Tensorflow=1.2.1, RDKit (`conda install -y -c conda-forge rdkit`), CUDA (GPU computation)
 
 ### Running CAMP
 
@@ -50,6 +50,10 @@ Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative sa
 
 1. format the peptide-protein data like (protein sequence, peptide sequence, protein_ss, peptide_ss) and generate a test data file called "test_filename" for 
 2. Use the command `python -u preprocess_features.py test_filename` to obtain processed feature dicts in ./preprocessing/
+
+### Recent Update 07/02/2021
+
+Fixed bugs and uploaded run.sh
 
 ### License
 
