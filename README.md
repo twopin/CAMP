@@ -22,7 +22,7 @@ Options are:
 `-p: The The padding length for proteins p, default: 800.`  
 2. To generate features, please refer to the instructuion in "Data curation".
 3. We recently added `run.sh` for users with no ML backgrounds to easiley test the model. Just simply run command `sh run.sh`.
-4. 
+
 ### Data curation
 
 Here we offer the protocol to construct the benchmark dataset. Due to the copyright issues, we can not provide the complete benchmark dataset. You may follow the procedures in ./data_prepare/ to reproduce the benchmark dataset and corresponding features (or features of your own data). For cluster-based cross validations, after finishing all the following procedures, you can get alignment results from https://github.com/mengyao/Complete-Striped-Smith-Waterman-Library and use the scripts in ./cluster/ to obtain the similarity matrix and split clusters of peptides and proteins based on the similarity matrix.
