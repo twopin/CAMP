@@ -179,7 +179,7 @@ def map_uniprot_chain(input_dataset,pdb_chain_uniprot_file,pdb_chain_uniprot_fil
 # INPUT: the data from Step 3 & uniprot2seq from UniProt Website (a tab separated file with fields including Uniprot_id,Uniprot Sequence,Protein_name,Protein_families)
 # OUTPUT: interacted peptide-protein pairs from PDB (a '#' separated file with fields including pdb_id,pep_chain,prot_chain,pep_seq,Uniprot_id,prot_seq,protein_families)
 
-def load_uni_seq(input_dataset,uniprot2seq_file)
+def load_uni_seq(input_dataset,uniprot2seq_file):
 
 	df_uni2seq = pd.read_csv(uniprot2seq_file,sep = '\t',header = 0)
 	df_uni2seq = df_uni2seq.drop('uniprot',axis = 1)
