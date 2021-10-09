@@ -142,7 +142,7 @@ def load_all_fasta(all_fasta_file,input_dataset): # pdbid_all_fasta # df_predict
 # Step 3: Map Uniprot ID for PDB complex by protein-chain & PDB id
 # INPUT: data from Step 2 & pdb_chain_uniprot.tsv from SIFT
 # OUTPUT: UniProt_ID_list ( all IDs are the searching query on https://www.uniprot.org/uploadlists/ for unified sequence)
-def map_uniprot_chain(input_dataset,pdb_chain_uniprot_file,pdb_chain_uniprot_file): #df_predict_det1 #pdb_chain_uniprot.tsv #uniport_id_list
+def map_uniprot_chain(input_dataset,pdb_chain_uniprot_file): #df_predict_det1 #pdb_chain_uniprot.tsv
 	df_sifts = pd.read_csv(pdb_chain_uniprot_file, sep = '\t', header = 0)
 	df_sifts = df_sifts[['PDB','CHAIN','SP_PRIMARY']]
 	df_sifts_keep = df_sifts[df_sifts['CHAIN'] !=  df_sifts['CHAIN']]
