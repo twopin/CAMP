@@ -2,6 +2,7 @@
 FROM continuumio/miniconda3:latest
 MAINTAINER "Dominick Lemas"
 RUN apt-get update
-RUN apt-get -y install python2.7 python-rdkit librdkit1 rdkit-data
+RUN apt-get -y install python2.7 
+RUN conda install -y -c conda-forge rdkit
 RUN pip install keras
 RUN pip install tensorflow
