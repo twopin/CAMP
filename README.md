@@ -2,6 +2,9 @@
 
 CAMP is a sequence-based deep learning framework for multifaceted prediction of peptide-protein interactions, including not only binary peptide-protein interactions, but also corresponding peptide binding residues.
 
+### UFRC Notes
+
+
 ### Notice
 
 Since CAMP exploits a series of sequence-based features, you CANNOT use CAMP when the primary sequence information of peptides and proteins is unknown. In addition, you need to replace any non-standard amino acid with 'X' first. Pay attention to that if you want to train with your own data.
