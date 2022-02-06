@@ -3,6 +3,24 @@
 CAMP is a sequence-based deep learning framework for multifaceted prediction of peptide-protein interactions, including not only binary peptide-protein interactions, but also corresponding peptide binding residues.
 
 ### UFRC Notes
+#### 1. navigate to directory 
+```
+cd C:\Users\djlemas\OneDrive\Documents\CAMP
+```
+#### 2. pull docker image
+```
+docker pull gpuci/miniconda-cuda
+```
+
+#### 3. boot into image 
+```
+docker run --rm -it gpuci/miniconda-cuda:11.5-devel-ubuntu20.04 bash
+```
+
+#### 4. #> run environment.yml 
+```
+# 
+```
 
 
 ### Notice
