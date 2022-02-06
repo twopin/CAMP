@@ -1,0 +1,6 @@
+name: camp
+dependencies:
+- pip=9.0.1=py27_1
+- python=2.7.13
+
+
