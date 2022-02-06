@@ -1,6 +1,10 @@
-name: camp
+name: camp_env
 dependencies:
-- pip=9.0.1=py27_1
-- python=2.7.13
+- python
+- pip
+- tensorflow-gpu
+- conda-forge::rdkit
+- pip:
+    - keras==2.0.8
 
 

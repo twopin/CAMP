@@ -14,12 +14,18 @@ docker pull gpuci/miniconda-cuda
 
 #### 3. boot into image 
 ```
-docker run --rm -it gpuci/miniconda-cuda:11.5-devel-ubuntu20.04 bash
+docker run --rm -it -v ${PWD}:/home/camp gpuci/miniconda-cuda:11.5-devel-ubuntu20.04 bash
+```
+
+#### 4. #> navigate to /camp 
+```
+#> cd /home/camp
 ```
 
 #### 4. #> run environment.yml 
 ```
-# 
+conda env create -f environment.yml
+
 ```
 
 
