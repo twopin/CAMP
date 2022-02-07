@@ -9,12 +9,12 @@ cd C:\Users\djlemas\OneDrive\Documents\CAMP
 ```
 #### 2. pull docker image
 ```
-docker pull gpuci/miniconda-cuda
+docker pull tensorflow/tensorflow:1.2.1-gpu 
 ```
 
 #### 3. boot into image 
 ```
-docker run --rm -it -v ${PWD}:/home/camp gpuci/miniconda-cuda:11.5-devel-ubuntu20.04 bash
+docker run --rm -it -v ${PWD}:/home/camp tensorflow/tensorflow:1.2.1-gpu bash
 ```
 
 #### 4. #> navigate to /camp 
@@ -22,12 +22,16 @@ docker run --rm -it -v ${PWD}:/home/camp gpuci/miniconda-cuda:11.5-devel-ubuntu2
 #> cd /home/camp
 ```
 
-#### 4. #> run environment.yml 
+#### 5. #> run environment.yml to create camp_env 
 ```
 conda env create -f environment.yml
 
 ```
+#### 6. #> activate camp_env 
+```
+conda activate camp_env
 
+```
 
 ### Notice
 
