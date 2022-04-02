@@ -73,8 +73,8 @@ for key in fasta_dict_short.keys():
 
 Intrinsic_score = {}
 for seq in Intrinsic_score_short.keys():
-    Intrinsic = Intrinsic_score_long[prot_seq][:,0]
-    short_Intrinsic = Intrinsic_score_short[prot_seq]
+    Intrinsic = Intrinsic_score_long[seq][:,0]
+    short_Intrinsic = Intrinsic_score_short[seq]
     concat_Intrinsic = np.column_stack((long_Intrinsic,short_Intrinsic))
     Intrinsic_score[seq] = np.column_stack((long_Intrinsic,short_Intrinsic))
 
