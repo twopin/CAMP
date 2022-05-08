@@ -8,9 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(reticulate)
-
-np<-import("~/CAMP/bs_pred_test.npy")
+library(RcppCNPy)
+np<-npyLoad("C:/Users/djlemas/OneDrive/Documents/CAMP/example_prediction/bs_pred_test.npy")
 
 
 ```
