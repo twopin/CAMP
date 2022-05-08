@@ -9,8 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(RcppCNPy)
-np<-npyLoad("C:/Users/djlemas/OneDrive/Documents/CAMP/example_prediction/bs_pred_test.npy")
-
+np0<-npyLoad("C:/Users/djlemas/OneDrive/Documents/CAMP/example_prediction/bs_pred_test.npy")
+np1<-npyLoad("C:/Users/djlemas/OneDrive/Documents/CAMP/example_prediction/bs_test_peptide.npy")
+np2<-npyLoad("C:/Users/djlemas/OneDrive/Documents/CAMP/example_prediction/bs_test_protein.npy")
 
 ```
 
