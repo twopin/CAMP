@@ -5,40 +5,589 @@ Please put the path of libssw.so into LD_LIBRARY_PATH or pass it explicitly as a
 By Yongan Zhao (March 2016)
 """
 
-import sys
-import os.path as op
 import ctypes as ct
-
-
+import os.path as op
+import sys
 
 lBlosum50 = [
-	#  A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V   B   Z   X   *
-     	5, -2, -1, -2, -1, -1, -1,  0, -2, -1, -2, -1, -1, -3, -1,  1,  0, -3, -2,  0, -2, -1, -1, -5,	# A
-       -2,  7, -1, -2, -4,  1,  0, -3,  0, -4, -3,  3, -2, -3, -3, -1, -1, -3, -1, -3, -1,  0, -1, -5,	# R
-       -1, -1,  7,  2, -2,  0,  0,  0,  1, -3, -4,  0, -2, -4, -2,  1,  0, -4, -2, -3,  5,  0, -1, -5,	# N
-       -2, -2,  2,  8, -4,  0,  2, -1, -1, -4, -4, -1, -4, -5, -1,  0, -1, -5, -3, -4,  6,  1, -1, -5,	# D
-       -1, -4, -2, -4, 13, -3, -3, -3, -3, -2, -2, -3, -2, -2, -4, -1, -1, -5, -3, -1, -3, -3, -1, -5,	# C
-       -1,  1,  0,  0, -3,  7,  2, -2,  1, -3, -2,  2,  0, -4, -1,  0, -1, -1, -1, -3,  0,  4, -1, -5,	# Q
-       -1,  0,  0,  2, -3,  2,  6, -3,  0, -4, -3,  1, -2, -3, -1, -1, -1, -3, -2, -3,  1,  5, -1, -5,	# E
-     	0, -3,  0, -1, -3, -2, -3,  8, -2, -4, -4, -2, -3, -4, -2,  0, -2, -3, -3, -4, -1, -2, -1, -5,	# G
-       -2,  0,  1, -1, -3,  1,  0, -2, 10, -4, -3,  0, -1, -1, -2, -1, -2, -3,  2, -4,  0,  0, -1, -5,	# H
-       -1, -4, -3, -4, -2, -3, -4, -4, -4,  5,  2, -3,  2,  0, -3, -3, -1, -3, -1,  4, -4, -3, -1, -5,	# I
-       -2, -3, -4, -4, -2, -2, -3, -4, -3,  2,  5, -3,  3,  1, -4, -3, -1, -2, -1,  1, -4, -3, -1, -5,	# L
-       -1,  3,  0, -1, -3,  2,  1, -2,  0, -3, -3,  6, -2, -4, -1,  0, -1, -3, -2, -3,  0,  1, -1, -5,	# K
-       -1, -2, -2, -4, -2,  0, -2, -3, -1,  2,  3, -2,  7,  0, -3, -2, -1, -1,  0,  1, -3, -1, -1, -5,	# M
-       -3, -3, -4, -5, -2, -4, -3, -4, -1,  0,  1, -4,  0,  8, -4, -3, -2,  1,  4, -1, -4, -4, -1, -5,	# F
-       -1, -3, -2, -1, -4, -1, -1, -2, -2, -3, -4, -1, -3, -4, 10, -1, -1, -4, -3, -3, -2, -1, -1, -5,	# P
-     	1, -1,  1,  0, -1,  0, -1,  0, -1, -3, -3,  0, -2, -3, -1,  5,  2, -4, -2, -2,  0,  0, -1, -5,	# S
-    	0, -1,  0, -1, -1, -1, -1, -2, -2, -1, -1, -1, -1, -2, -1,  2,  5, -3, -2,  0,  0, -1, -1, -5, 	# T
-       -3, -3, -4, -5, -5, -1, -3, -3, -3, -3, -2, -3, -1,  1, -4, -4, -3, 15,  2, -3, -5, -2, -1, -5, 	# W
-       -2, -1, -2, -3, -3, -1, -2, -3,  2, -1, -1, -2,  0,  4, -3, -2, -2,  2,  8, -1, -3, -2, -1, -5, 	# Y
-     	0, -3, -3, -4, -1, -3, -3, -4, -4,  4,  1, -3,  1, -1, -3, -2,  0, -3, -1,  5, -3, -3, -1, -5, 	# V
-       -2, -1,  5,  6, -3,  0,  1, -1,  0, -4, -4,  0, -3, -4, -2,  0,  0, -5, -3, -3,  6,  1, -1, -5, 	# B
-       -1,  0,  0,  1, -3,  4,  5, -2,  0, -3, -3,  1, -1, -4, -1,  0, -1, -2, -2, -3,  1,  5, -1, -5, 	# Z
-       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -5, 	# X
-       -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5,  1 	# *
-       ]
-
+    #  A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V   B   Z   X   *
+    5,
+    -2,
+    -1,
+    -2,
+    -1,
+    -1,
+    -1,
+    0,
+    -2,
+    -1,
+    -2,
+    -1,
+    -1,
+    -3,
+    -1,
+    1,
+    0,
+    -3,
+    -2,
+    0,
+    -2,
+    -1,
+    -1,
+    -5,  # A
+    -2,
+    7,
+    -1,
+    -2,
+    -4,
+    1,
+    0,
+    -3,
+    0,
+    -4,
+    -3,
+    3,
+    -2,
+    -3,
+    -3,
+    -1,
+    -1,
+    -3,
+    -1,
+    -3,
+    -1,
+    0,
+    -1,
+    -5,  # R
+    -1,
+    -1,
+    7,
+    2,
+    -2,
+    0,
+    0,
+    0,
+    1,
+    -3,
+    -4,
+    0,
+    -2,
+    -4,
+    -2,
+    1,
+    0,
+    -4,
+    -2,
+    -3,
+    5,
+    0,
+    -1,
+    -5,  # N
+    -2,
+    -2,
+    2,
+    8,
+    -4,
+    0,
+    2,
+    -1,
+    -1,
+    -4,
+    -4,
+    -1,
+    -4,
+    -5,
+    -1,
+    0,
+    -1,
+    -5,
+    -3,
+    -4,
+    6,
+    1,
+    -1,
+    -5,  # D
+    -1,
+    -4,
+    -2,
+    -4,
+    13,
+    -3,
+    -3,
+    -3,
+    -3,
+    -2,
+    -2,
+    -3,
+    -2,
+    -2,
+    -4,
+    -1,
+    -1,
+    -5,
+    -3,
+    -1,
+    -3,
+    -3,
+    -1,
+    -5,  # C
+    -1,
+    1,
+    0,
+    0,
+    -3,
+    7,
+    2,
+    -2,
+    1,
+    -3,
+    -2,
+    2,
+    0,
+    -4,
+    -1,
+    0,
+    -1,
+    -1,
+    -1,
+    -3,
+    0,
+    4,
+    -1,
+    -5,  # Q
+    -1,
+    0,
+    0,
+    2,
+    -3,
+    2,
+    6,
+    -3,
+    0,
+    -4,
+    -3,
+    1,
+    -2,
+    -3,
+    -1,
+    -1,
+    -1,
+    -3,
+    -2,
+    -3,
+    1,
+    5,
+    -1,
+    -5,  # E
+    0,
+    -3,
+    0,
+    -1,
+    -3,
+    -2,
+    -3,
+    8,
+    -2,
+    -4,
+    -4,
+    -2,
+    -3,
+    -4,
+    -2,
+    0,
+    -2,
+    -3,
+    -3,
+    -4,
+    -1,
+    -2,
+    -1,
+    -5,  # G
+    -2,
+    0,
+    1,
+    -1,
+    -3,
+    1,
+    0,
+    -2,
+    10,
+    -4,
+    -3,
+    0,
+    -1,
+    -1,
+    -2,
+    -1,
+    -2,
+    -3,
+    2,
+    -4,
+    0,
+    0,
+    -1,
+    -5,  # H
+    -1,
+    -4,
+    -3,
+    -4,
+    -2,
+    -3,
+    -4,
+    -4,
+    -4,
+    5,
+    2,
+    -3,
+    2,
+    0,
+    -3,
+    -3,
+    -1,
+    -3,
+    -1,
+    4,
+    -4,
+    -3,
+    -1,
+    -5,  # I
+    -2,
+    -3,
+    -4,
+    -4,
+    -2,
+    -2,
+    -3,
+    -4,
+    -3,
+    2,
+    5,
+    -3,
+    3,
+    1,
+    -4,
+    -3,
+    -1,
+    -2,
+    -1,
+    1,
+    -4,
+    -3,
+    -1,
+    -5,  # L
+    -1,
+    3,
+    0,
+    -1,
+    -3,
+    2,
+    1,
+    -2,
+    0,
+    -3,
+    -3,
+    6,
+    -2,
+    -4,
+    -1,
+    0,
+    -1,
+    -3,
+    -2,
+    -3,
+    0,
+    1,
+    -1,
+    -5,  # K
+    -1,
+    -2,
+    -2,
+    -4,
+    -2,
+    0,
+    -2,
+    -3,
+    -1,
+    2,
+    3,
+    -2,
+    7,
+    0,
+    -3,
+    -2,
+    -1,
+    -1,
+    0,
+    1,
+    -3,
+    -1,
+    -1,
+    -5,  # M
+    -3,
+    -3,
+    -4,
+    -5,
+    -2,
+    -4,
+    -3,
+    -4,
+    -1,
+    0,
+    1,
+    -4,
+    0,
+    8,
+    -4,
+    -3,
+    -2,
+    1,
+    4,
+    -1,
+    -4,
+    -4,
+    -1,
+    -5,  # F
+    -1,
+    -3,
+    -2,
+    -1,
+    -4,
+    -1,
+    -1,
+    -2,
+    -2,
+    -3,
+    -4,
+    -1,
+    -3,
+    -4,
+    10,
+    -1,
+    -1,
+    -4,
+    -3,
+    -3,
+    -2,
+    -1,
+    -1,
+    -5,  # P
+    1,
+    -1,
+    1,
+    0,
+    -1,
+    0,
+    -1,
+    0,
+    -1,
+    -3,
+    -3,
+    0,
+    -2,
+    -3,
+    -1,
+    5,
+    2,
+    -4,
+    -2,
+    -2,
+    0,
+    0,
+    -1,
+    -5,  # S
+    0,
+    -1,
+    0,
+    -1,
+    -1,
+    -1,
+    -1,
+    -2,
+    -2,
+    -1,
+    -1,
+    -1,
+    -1,
+    -2,
+    -1,
+    2,
+    5,
+    -3,
+    -2,
+    0,
+    0,
+    -1,
+    -1,
+    -5,  # T
+    -3,
+    -3,
+    -4,
+    -5,
+    -5,
+    -1,
+    -3,
+    -3,
+    -3,
+    -3,
+    -2,
+    -3,
+    -1,
+    1,
+    -4,
+    -4,
+    -3,
+    15,
+    2,
+    -3,
+    -5,
+    -2,
+    -1,
+    -5,  # W
+    -2,
+    -1,
+    -2,
+    -3,
+    -3,
+    -1,
+    -2,
+    -3,
+    2,
+    -1,
+    -1,
+    -2,
+    0,
+    4,
+    -3,
+    -2,
+    -2,
+    2,
+    8,
+    -1,
+    -3,
+    -2,
+    -1,
+    -5,  # Y
+    0,
+    -3,
+    -3,
+    -4,
+    -1,
+    -3,
+    -3,
+    -4,
+    -4,
+    4,
+    1,
+    -3,
+    1,
+    -1,
+    -3,
+    -2,
+    0,
+    -3,
+    -1,
+    5,
+    -3,
+    -3,
+    -1,
+    -5,  # V
+    -2,
+    -1,
+    5,
+    6,
+    -3,
+    0,
+    1,
+    -1,
+    0,
+    -4,
+    -4,
+    0,
+    -3,
+    -4,
+    -2,
+    0,
+    0,
+    -5,
+    -3,
+    -3,
+    6,
+    1,
+    -1,
+    -5,  # B
+    -1,
+    0,
+    0,
+    1,
+    -3,
+    4,
+    5,
+    -2,
+    0,
+    -3,
+    -3,
+    1,
+    -1,
+    -4,
+    -1,
+    0,
+    -1,
+    -2,
+    -2,
+    -3,
+    1,
+    5,
+    -1,
+    -5,  # Z
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -5,  # X
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    1,  # *
+]
 
 
 class CAlignRes(ct.Structure):
@@ -57,16 +606,18 @@ class CAlignRes(ct.Structure):
                                     cigar = 0 when the best alignment path is not available
     @field	nCigarLen	length of the cigar string; cigarLen = 0 when the best alignment path is not available
     """
-    _fields_ = [('nScore', ct.c_uint16), 
-                ('nScore2', ct.c_uint16), 
-                ('nRefBeg', ct.c_int32), 
-                ('nRefEnd', ct.c_int32), 
-                ('nQryBeg', ct.c_int32), 
-                ('nQryEnd', ct.c_int32), 
-                ('nRefEnd2', ct.c_int32), 
-                ('sCigar', ct.POINTER(ct.c_uint32)), 
-                ('nCigarLen', ct.c_int32)] 
 
+    _fields_ = [
+        ("nScore", ct.c_uint16),
+        ("nScore2", ct.c_uint16),
+        ("nRefBeg", ct.c_int32),
+        ("nRefEnd", ct.c_int32),
+        ("nQryBeg", ct.c_int32),
+        ("nQryEnd", ct.c_int32),
+        ("nRefEnd2", ct.c_int32),
+        ("sCigar", ct.POINTER(ct.c_uint32)),
+        ("nCigarLen", ct.c_int32),
+    ]
 
 
 class CProfile(ct.Structure):
@@ -80,45 +631,48 @@ class CProfile(ct.Structure):
     @field	nN	edge length of score matrix
     @field	nBias	bias
     """
-    _fields_ = [('pByte', ct.POINTER(ct.c_int32)),
-                ('pWord', ct.POINTER(ct.c_int32)),
-                ('pRead', ct.POINTER(ct.c_int8)),
-                ('pMat', ct.POINTER(ct.c_int8)),
-                ('nReadLen', ct.c_int32),
-                ('nN', ct.c_int32),
-                ('nBias', ct.c_uint8)]
 
+    _fields_ = [
+        ("pByte", ct.POINTER(ct.c_int32)),
+        ("pWord", ct.POINTER(ct.c_int32)),
+        ("pRead", ct.POINTER(ct.c_int8)),
+        ("pMat", ct.POINTER(ct.c_int8)),
+        ("nReadLen", ct.c_int32),
+        ("nN", ct.c_int32),
+        ("nBias", ct.c_uint8),
+    ]
 
 
 class CSsw(object):
     """
     A class for libssw
     """
+
     def __init__(self, sLibPath):
         """
         init all para
         @para   sLibpath    argparse object
         """
-# load libssw
-        sLibName = 'libssw.so'
+        # load libssw
+        sLibName = "libssw.so"
         if not sLibPath:
-# user doesn't give the path explicitly
+            # user doesn't give the path explicitly
             if not op.exists(op.join(sLibPath, sLibName)):
-                print >> sys.stderr, 'libssw.so does not exist in the input path'
+                print >>sys.stderr, "libssw.so does not exist in the input path"
                 sys.exit()
-            self.ssw = ct.cdll.LoadLibrary(op.join(sLibPath,sLibName))
+            self.ssw = ct.cdll.LoadLibrary(op.join(sLibPath, sLibName))
         else:
-# otherwise just search in PATH
+            # otherwise just search in PATH
             bFound = False
             for s in sys.path:
-                if op.exists(op.join(s,sLibName)):
+                if op.exists(op.join(s, sLibName)):
                     bFound = True
-                    self.ssw = ct.cdll.LoadLibrary(op.join(s,sLibName))
+                    self.ssw = ct.cdll.LoadLibrary(op.join(s, sLibName))
             if bFound == False:
-                print >> sys.stderr, 'libssw.so does not exist in PATH'
+                print >>sys.stderr, "libssw.so does not exist in PATH"
                 sys.exit()
 
-# init ssw_init
+        # init ssw_init
         """
 	@function	Create the query profile using the query sequence.
 	@param	read	pointer to the query sequence; the query sequence needs to be numbers
@@ -139,9 +693,15 @@ class CSsw(object):
 			mat is the pointer to the array {2, -2, -2, -2, -2, 2, -2, -2, -2, -2, 2, -2, -2, -2, -2, 2}
         """
         self.ssw_init = self.ssw.ssw_init
-        self.ssw_init.argtypes = [ct.POINTER(ct.c_int8), ct.c_int32, ct.POINTER(ct.c_int8), ct.c_int32, ct.c_int8]
+        self.ssw_init.argtypes = [
+            ct.POINTER(ct.c_int8),
+            ct.c_int32,
+            ct.POINTER(ct.c_int8),
+            ct.c_int32,
+            ct.c_int8,
+        ]
         self.ssw_init.restype = ct.POINTER(CProfile)
-# init init_destroy
+        # init init_destroy
         """
 	@function	Release the memory allocated by function ssw_init.
 	@param	p	pointer to the query profile structure
@@ -149,7 +709,7 @@ class CSsw(object):
         self.init_destroy = self.ssw.init_destroy
         self.init_destroy.argtypes = [ct.POINTER(CProfile)]
         self.init_destroy.restype = None
-# init ssw_align
+        # init ssw_align
         """
 !	@function	Do Striped Smith-Waterman alignment.
 	@param	prof	pointer to the query profile structure
@@ -184,9 +744,19 @@ class CSsw(object):
 			0-based coordinate.
         """
         self.ssw_align = self.ssw.ssw_align
-        self.ssw_align.argtypes = [ct.c_void_p, ct.POINTER(ct.c_int8), ct.c_int32, ct.c_uint8, ct.c_uint8, ct.c_uint8, ct.c_uint16, ct.c_int32, ct.c_int32]
+        self.ssw_align.argtypes = [
+            ct.c_void_p,
+            ct.POINTER(ct.c_int8),
+            ct.c_int32,
+            ct.c_uint8,
+            ct.c_uint8,
+            ct.c_uint8,
+            ct.c_uint16,
+            ct.c_int32,
+            ct.c_int32,
+        ]
         self.ssw_align.restype = ct.POINTER(CAlignRes)
-# init align_destroy
+        # init align_destroy
         """
 	@function	Release the memory allocated by function ssw_align.
 	@param	a	pointer to the alignment result structure
@@ -196,21 +766,20 @@ class CSsw(object):
         self.align_destroy.restype = None
 
 
-
 def read_matrix(sFile):
     """
     read a score matrix for either DNA or protein
     assume the format of the input score matrix is the same as that of http://www.ncbi.nlm.nih.gov/Class/FieldGuide/BLOSUM62.txt
 
     """
-    with open(args.sMatrix, 'r') as f:
+    with open(args.sMatrix, "r") as f:
         for l in f:
-            if not l.startswith('#'):
+            if not l.startswith("#"):
                 break
         lEle = l.strip().split()
         dEle2Int = {}
         dInt2Ele = {}
-        for i,ele in enumerate(lEle):
+        for i, ele in enumerate(lEle):
             dEle2Int[ele] = i
             dEle2Int[ele.lower()] = i
             dInt2Ele[i] = ele
@@ -222,5 +791,5 @@ def read_matrix(sFile):
         return lEle, dEle2Int, dInt2Ele, lScore
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass
