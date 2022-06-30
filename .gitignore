@@ -1,4 +1,5 @@
-
 .idea/
-
 example_data_feature/
+*.npy
+*.pyc
+

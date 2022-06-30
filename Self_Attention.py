@@ -1,5 +1,5 @@
 from keras import backend as K
-from keras.engine.topology import Layer
+from keras.engine.base_layer import Layer
 
 
 class Self_Attention(Layer):

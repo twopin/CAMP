@@ -1,10 +1,11 @@
 from optparse import OptionParser
 
-import numpy as np
-import tensorflow as tf
-from keras.backend.tensorflow_backend import set_session
-from keras.layers import *
+# from keras.backend.tensorflow_backend import set_session
+import pandas as pd
+from keras.backend import set_session
 from keras.models import *
+import tensorflow as tf
+from tensorflow.core.protobuf import config_pb2
 
 from Self_Attention import *
 from camp_utils import *
@@ -29,11 +30,10 @@ parser.add_option(
 )
 (opts, args) = parser.parse_args()
 
-
 def get_session(gpu_fraction):
-    config = tf.ConfigProto()
-    config.gpu_options.per_process_gpu_memory_fraction = gpu_fraction
-    return tf.Session(config=config)
+    config = config_pb2.ConfigProto
+    # config.gpu_options.per_process_gpu_memory_fraction = gpu_fraction
+    return tf.compat.v1.Session(config=None)
 
 
 def binding_vec_pos(bs_str, N):
@@ -94,22 +94,14 @@ set_session(get_session(gpu_frac))
 def load_example(model_mode):
     print("loading features:")
 
-    with open("./example_data_feature/protein_feature_dict") as f:
-        protein_feature_dict = pickle.load(f)
-    with open("./example_data_feature/peptide_feature_dict") as f:
-        peptide_feature_dict = pickle.load(f)
-    with open("./example_data_feature/protein_ss_feature_dict") as f:
-        protein_ss_feature_dict = pickle.load(f)
-    with open("./example_data_feature/peptide_ss_feature_dict") as f:
-        peptide_ss_feature_dict = pickle.load(f)
-    with open("./example_data_feature/protein_2_feature_dict") as f:
-        protein_2_feature_dict = pickle.load(f)
-    with open("./example_data_feature/peptide_2_feature_dict") as f:
-        peptide_2_feature_dict = pickle.load(f)
-    with open("./example_data_feature/protein_dense_feature_dict") as f:
-        protein_dense_feature_dict = pickle.load(f)
-    with open("./example_data_feature/peptide_dense_feature_dict") as f:
-        peptide_dense_feature_dict = pickle.load(f)
+    protein_feature_dict = pd.read_pickle("./example_data_feature/protein_feature_dict")
+    peptide_feature_dict = pd.read_pickle("./example_data_feature/peptide_feature_dict")
+    protein_ss_feature_dict = pd.read_pickle("./example_data_feature/protein_ss_feature_dict")
+    peptide_ss_feature_dict = pd.read_pickle("./example_data_feature/peptide_ss_feature_dict")
+    protein_2_feature_dict = pd.read_pickle("./example_data_feature/protein_2_feature_dict")
+    peptide_2_feature_dict = pd.read_pickle("./example_data_feature/peptide_2_feature_dict")
+    protein_dense_feature_dict = pd.read_pickle("./example_data_feature/protein_dense_feature_dict")
+    peptide_dense_feature_dict = pd.read_pickle("./example_data_feature/peptide_dense_feature_dict")
 
     datafile = "example_data.tsv"
     print("load feature dict")
@@ -159,7 +151,7 @@ def load_example(model_mode):
 
     pep_sequence = np.array(pep_sequence)
     prot_sequence = np.array(prot_sequence)
-    train_idx = range(X_pep.shape[0])
+    train_idx = list(range(X_pep.shape[0]))
     np.random.shuffle(train_idx)
     X_pep = X_pep[train_idx]
     X_p = X_p[train_idx]
@@ -207,7 +199,7 @@ def load_example(model_mode):
 
 
 if model_mode == 1:
-    model_name = "./model/CAMP.h5"
+    model_name = "CAMP.h5"
     print("Start loading model :", model_name)
     model = load_model(model_name, custom_objects={"Self_Attention": Self_Attention})
     # model.summary()
