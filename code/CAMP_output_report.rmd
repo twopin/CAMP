@@ -25,24 +25,52 @@ options(scipen = 100)
 # input data
 data <- read.delim2("~/CAMP/sample_data") %>% as_tibble()
 
+work_dir="C:/Users/djlemas/Documents/"
+
 # output
-pred<-npyLoad("~/CAMP/example_prediction/bs_pred_test.npy") %>% as_tibble() 
-pep<-npyLoad("~/CAMP/example_prediction/bs_test_peptide.npy") %>% as_tibble() 
-pro<-npyLoad("~/CAMP/example_prediction/bs_test_protein.npy") %>% as_tibble() 
+pred<-npyLoad(paste0(work_dir,"/CAMP/example_prediction/bs_pred_test.npy")) %>% as_tibble() 
+pep<-npyLoad(paste0(work_dir,"/CAMP/example_prediction/bs_test_peptide.npy")) %>% as_tibble() 
+pro<-npyLoad(paste0(work_dir,"/CAMP/example_prediction/bs_test_protein.npy")) %>% as_tibble() 
 
 ```
 
 ```{r, warning=FALSE, echo=FALSE}
 # export files
 
-# file name
-file_name1=paste0("pred.rda")
-file_name2=paste0("pred.csv")
-data_directory=paste0("~/CAMP/example_prediction/") 
-rda_data_path=paste0(data_directory,file_name1)
+# prediction
+  # file name
+    file_name_rda=paste0("pred.rda")
+    file_name_csv=paste0("pred.csv")
+    data_directory=paste0("~/CAMP/example_prediction/") 
+  # path
+    rda_data_path=paste0(data_directory,file_name_rda)
+    csv_data_path=paste0(data_directory,file_name_csv)
+  # export
+    pred %>% save(pred, file=rda_data_path)
+    write_tsv(pred, path=csv_data_path, col_names=TRUE)
+    
+# peptide
+  # file name
+    file_name_rda=paste0("pep.rda")
+    file_name_csv=paste0("pep.csv")
+    data_directory=paste0("~/CAMP/example_prediction/") 
+  # path
+    rda_data_path=paste0(data_directory,file_name_rda)
+    csv_data_path=paste0(data_directory,file_name_csv)
+  # export
+    pred %>% save(pep, file=rda_data_path)
+    write_tsv(pep, path=csv_data_path, col_names=TRUE)
 
-# export
-note %>% save(note, file=data_path)
-
+# protein
+  # file name
+    file_name_rda=paste0("pro.rda")
+    file_name_csv=paste0("pro.csv")
+    data_directory=paste0("~/CAMP/example_prediction/") 
+  # path
+    rda_data_path=paste0(data_directory,file_name_rda)
+    csv_data_path=paste0(data_directory,file_name_csv)
+  # export
+    pred %>% save(pro, file=rda_data_path)
+    write_tsv(pro, path=csv_data_path, col_names=TRUE)
                               
 ```
