@@ -1,0 +1,48 @@
+---
+title: "explore_output"
+author: "Dominick J. Lemas"
+date: "5/7/2022"
+output: html_document
+---
+
+```{r, include=FALSE, echo=FALSE}
+
+# **************************************************************************** #
+# ***************                Libraries                     *************** #
+# **************************************************************************** #
+
+library(RcppCNPy)
+library(dplyr)
+library(tidyverse)
+
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen = 100)
+
+# input data
+data <- read.delim2("~/CAMP/sample_data") %>% as_tibble()
+
+# output
+pred<-npyLoad("~/CAMP/example_prediction/bs_pred_test.npy") %>% as_tibble() 
+pep<-npyLoad("~/CAMP/example_prediction/bs_test_peptide.npy") %>% as_tibble() 
+pro<-npyLoad("~/CAMP/example_prediction/bs_test_protein.npy") %>% as_tibble() 
+
+```
+
+```{r, warning=FALSE, echo=FALSE}
+# export files
+
+# file name
+file_name1=paste0("pred.rda")
+file_name2=paste0("pred.csv")
+data_directory=paste0("~/CAMP/example_prediction/") 
+rda_data_path=paste0(data_directory,file_name1)
+
+# export
+note %>% save(note, file=data_path)
+
+                              
+```
