@@ -12,24 +12,24 @@ cd /blue/djlemas/djlemas/
 git clone https://github.com/lemaslab/CAMP.git  
 ```
 
-#### 3. boot into image 
+#### 3. move into CAMP directory 
 ```
-docker run --rm -it -v ${PWD}:/home/camp tensorflow/tensorflow:1.2.1-gpu bash
-```
-
-#### 4. #> navigate to /camp 
-```
-#> cd /home/camp
+cd ~/CAMP/
 ```
 
-#### 5. #> run environment.yml to create camp_env 
+#### 4. unzip core resources 
 ```
-conda env create -f environment.yml
+sh run_first.sh
+```
+
+#### 5. run `predict_CAMP.py` using SLURM
+```
+sbatch slurm.job
 
 ```
-#### 6. #> activate camp_env 
+#### 6. check status of SLURM
 ```
-conda activate camp_env
+squeue -A djlemas
 
 ```
 
