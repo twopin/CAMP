@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --job-name=CAMP_test_3
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=djlemas@ufl.edu
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem-per-cpu=4gb
+#SBATCH --partition=gpu
+#SBATCH --gpus=a100:1
+#SBATCH --time=2:00:00
+#SBATCH --output=camp_test_03.log
+
+pwd; hostname; date
+
+module load cuda/11.0.207 camp/1.0.0
+
+cd /blue/djlemas/djlemas/CAMP/
+python -u predict_CAMP.py 
+
+date
+

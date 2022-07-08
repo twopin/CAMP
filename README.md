@@ -2,14 +2,14 @@
 
 CAMP is a sequence-based deep learning framework for multifaceted prediction of peptide-protein interactions, including not only binary peptide-protein interactions, but also corresponding peptide binding residues.
 
-### UFRC Notes
-#### 1. navigate to directory 
+### UFRC 
+#### 1. navigate to directory that will host repo 
 ```
-cd C:\Users\djlemas\OneDrive\Documents\CAMP
+cd /blue/djlemas/djlemas/
 ```
-#### 2. pull docker image
+#### 2. clone repository
 ```
-docker pull tensorflow/tensorflow:1.2.1-gpu 
+git clone https://github.com/lemaslab/CAMP.git  
 ```
 
 #### 3. boot into image 
