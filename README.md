@@ -44,7 +44,7 @@ Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative sa
 
 	1. Secondary structure : http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro
 	2. Intrinsic Disorder :  https://iupred2a.elte.hu/
-	3. PSSM matrix: ftp://ftp.cnbi.nlm.nih.gov/blast/executables/blast+/LATEST/
+	3. PSSM matrix: https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 	4. Use the functions in ./data_prepare/step3_generate_features.py to process raw output files. Then put all feature dicts in ./dense_feature_dict/
 
 - STEP 4: Proprecess data with feature dictionaries
