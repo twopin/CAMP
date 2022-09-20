@@ -42,7 +42,7 @@ Here we offer the protocol to construct the benchmark dataset. Due to the copyri
 - STEP 3: Generated sequnece-based features
 Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative samples. After that, you need to generate the corresponding features (you can either use the online servers or download the softwares):
 
-	1. Secondary structure : http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro
+	1. Secondary structure : http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro IS NOT CORRECT. PLEASE DOWNLOAD THE LINUX 2018 VERSION HERE: https://download.igb.uci.edu/ (SCRATCH-1D release 1.2 (2018, linux version, 6.3 GB))
 	2. Intrinsic Disorder :  https://iupred2a.elte.hu/
 	3. PSSM matrix: ftp://ftp.cnbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 	4. Use the functions in ./data_prepare/step3_generate_features.py to process raw output files. Then put all feature dicts in ./dense_feature_dict/
@@ -52,9 +52,11 @@ Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative sa
 1. format the peptide-protein data like (protein sequence, peptide sequence, protein_ss, peptide_ss) and generate a test data file called "test_filename" for 
 2. Use the command `python -u preprocess_features.py test_filename` to obtain processed feature dicts in ./preprocessing/
 
-### Recent Update 07/02/2021
 
-Fixed bugs and uploaded run.sh to easily test the model.
+
+### Recent Update 2022.09
+
+Some researchers find that the web server generating secondary structures http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro would generate different results which we used to train and evaluate CAMP by installing the 2018 LINUX version. We are sorry that we didnt't realize such difference and please generate these features by using the LINUX 2018 version (SCRATCH-1D release 1.2 (2018, linux version))
 
 ### License
 
