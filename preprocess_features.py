@@ -4,10 +4,14 @@ import sys
 import pickle
 import math
 
-amino_acid_set = { "A": 1, "C": 2, "E": 3, "D": 4, "G": 5, "F": 6, "I": 7, "H": 8, "K": 9, "M": 10, "L": 11, 
-				"N": 12, "Q": 13, "P": 14, "S": 15, "R": 16, "T": 17, "W": 18, "V": 19, "Y": 20, "X": 21 }
+amino_acid_set = { "A": 1, "C": 2, "B": 3, "E": 4, "D": 5, "G": 6, 
+				"F": 7, "I": 8, "H": 9, "K": 10, "M": 11, "L": 12, 
+				"O": 13, "N": 14, "Q": 15, "P": 16, "S": 17, "R": 18, 
+				"U": 19, "T": 20, "W": 21, 
+				"V": 22, "Y": 23, "X": 24, 
+				"Z": 25 } # consider non-standard residues
 
-amino_acid_num = 21
+amino_acid_num = 25
 
 ss_set = {"C": 1, "H": 2, "E": 3}
 ss_number = 3
