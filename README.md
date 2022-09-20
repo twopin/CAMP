@@ -56,7 +56,7 @@ Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative sa
 
 ### Recent Update 2022.09
 
-Some researchers find that the web server generating secondary structures http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro would generate different results which we used to train and evaluate CAMP by installing the 2018 LINUX version. We are sorry that we didnt't realize such difference and please generate these features by using the LINUX 2018 version (SCRATCH-1D release 1.2 (2018, linux version))
+Some researchers find that the web server generating secondary structures http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro would generate different results which we used to train and evaluate CAMP by installing the 2018 LINUX version. Such differences may due to the updated predicting algorithm of SSPro in 2020. We investigated such variance and found that around 5-10% residues would be predicted into distinct SS-classes. Since our model was trained using the 2018-linux verion software, please generate these features by using the LINUX 2018 version (SCRATCH-1D release 1.2 (2018, linux version)) for inference. We'll update our model with new features soon.
 
 ### License
 
