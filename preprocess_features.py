@@ -13,7 +13,7 @@ amino_acid_set = { "A": 1, "C": 2, "B": 3, "E": 4, "D": 5, "G": 6,
 
 amino_acid_num = 25
 
-ss_set = {"C": 1, "H": 2, "E": 3}
+ss_set = {"H": 1, "C": 2, "E": 3} # revise order, not necessary if training your own model
 ss_number = 3
 
 physicochemical_set={'A': 1, 'C': 3, 'B': 7, 'E': 5, 'D': 5, 'G': 2, 'F': 1, 
