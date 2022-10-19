@@ -6,8 +6,6 @@ CAMP is a sequence-based deep learning framework for multifaceted prediction of 
 
 Since CAMP exploits a series of sequence-based features, you CANNOT use CAMP when the primary sequence information of peptides and proteins is unknown. In addition, you need to replace any non-standard amino acid with 'X' first. 
 
-Since many researchers raise similar requests, I re-implemented CAMP using Python3+pytorch recently and the model file with corresponding training/predicting scripts will be uploaded this month. ( You can still use the original version trained by Python2+Keras). 
-
 ### Requirement
 
 Trained and tested on a linux server with GeForce GTX 1080 and the running environment is as follows:
@@ -61,7 +59,10 @@ Combine all data from DrugBank and PDB, then shuffle pairs to obtain negative sa
 Some researchers find that the web server generating secondary structures http://scratch.proteomics.ics.uci.edu/explanation.html#SSpro would generate different results which we used to train and evaluate CAMP by installing the 2018 LINUX version. Such differences may due to the updated predicting algorithm of SSPro in 2020. We investigated such variance and found that around 5-10% residues would be predicted into distinct SS-classes. Since our model was trained using the 2018-linux verion software, please generate these features by using the LINUX 2018 version (SCRATCH-1D release 1.2 (2018, linux version)) for inference. We'll update our model with new features soon.
 
 ### Recent Update 2022/10
-For better inference, here we provided Keras model files and corresponding feature generation scripts with 20 standard AA + "U/B/O/Z" + "X" for unknown AA. Pay attention to that if you want to train with your own data or make inference.
+For better inference, here we provided Keras model files and corresponding feature generation scripts with 20 standard AA + "U/B/O/Z" + "X" for unknown AA. Pay attention to that if you want to train with your own data or make inference. 
+
+Since many researchers request for training CAMP on their own data, I re-implemented CAMP using Python3+pytorch recently and the model file with corresponding training/predicting scripts will be uploaded this month. ( You can still use the original version trained by Python2+Keras). 
+
 
 ### License
 
