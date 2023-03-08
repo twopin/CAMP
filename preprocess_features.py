@@ -33,7 +33,7 @@ for i in residue_list:
 
 new_value_list = [x+1 for x in list(range(amino_acid_num*ss_number))]
 
-seq_ss_set = dict(zip(new_key_list,new_value_list))
+seq_ss_dict = dict(zip(new_key_list,new_value_list))
 seq_ss_number = amino_acid_num*ss_number #75
 
 
@@ -147,10 +147,10 @@ if __name__ == '__main__':
 			feature = label_sequence(seq, pad_prot_len, amino_acid_set)
 			protein_feature_dict[seq] = feature
 		if pep_ss not in peptide_ss_feature_dict:
-			feature = label_seq_ss(pep_ss, pad_pep_len, seq_ss_set)
+			feature = label_seq_ss(pep_ss, pad_pep_len, seq_ss_dict)
 			peptide_ss_feature_dict[pep_ss] = feature
 		if seq_ss not in protein_ss_feature_dict:
-			feature = label_seq_ss(seq_ss, pad_prot_len, seq_ss_set)
+			feature = label_seq_ss(seq_ss, pad_prot_len, seq_ss_dict)
 			protein_ss_feature_dict[seq_ss] = feature
 		if pep not in peptide_2_feature_dict:
 			feature = label_sequence(pep, pad_pep_len, physicochemical_set)
