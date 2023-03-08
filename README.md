@@ -64,6 +64,10 @@ For better inference, here we provided Keras model files and corresponding featu
 Since many researchers request for training CAMP on their own data, I re-implemented CAMP using Python3+pytorch recently and the model file with corresponding training/predicting scripts will be uploaded this month. ( You can still use the original version trained by Python2+Keras). 
 
 
+### Recent Update 2023/03
+
+The python3+pytorch version is uploaded to CAMP_pytorch. You can use the script to train your own data and also if you just want to do some infererence, please check the last few lines in the script and use any of the uploaded checkpoints to make inference.
+
 ### License
 
 This software is copyrighted by Machine Learning and Computational Biology Group @ Tsinghua University.
