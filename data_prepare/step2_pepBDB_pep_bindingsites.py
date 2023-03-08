@@ -39,6 +39,6 @@ def extract_inter_idx(pep_seq,binding_vec):
         return '-99999'
     
 df_v1['binding_idx'] = df_v1.apply(lambda x: extract_inter_idx(x.pep_seq,x.pep_binding_vec),axis=1)
-df_part_pair = df_part_all[['pep_seq','prot_seq','binding_idx']]
+df_part_pair = df_v1[['pep_seq','prot_seq','binding_idx']]
 df_pos_bs = pd.merge(df_v1,df_part_pair,how='left',left_on=['pep_seq','prot_seq'],right_on=['pep_seq','prot_seq'])
 df_pos_bs.to_csv('pdb_pairs_bindingsites', encoding = 'utf-8', index = False, sep = ',')
