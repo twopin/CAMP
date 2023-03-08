@@ -66,7 +66,7 @@ Since many researchers request for training CAMP on their own data, I re-impleme
 
 ### Recent Update 2023/03
 
-The python3+pytorch version is uploaded to CAMP_pytorch. You can use the script to train your own data and also if you just want to do some infererence, please check the last few lines in the script and use any of the uploaded checkpoints to make inference.
+The python3+pytorch version is uploaded to CAMP_pytorch. You can use the script to train your own data and also if you just want to do some infererence, please check the last few lines in the script and use any of the uploaded checkpoints to make inference. Sorry for the lateness.
 
 ### License
 
