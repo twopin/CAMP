@@ -44,7 +44,7 @@ print('load feature dict')
 X_pep, X_prot, X_pep_SS, X_prot_SS, X_pep_2, X_prot_2 = [], [], [], [], [], []
 X_dense_pep,X_dense_prot = [],[]
 pep_sequence, prot_sequence, Y = [], [], []
-with open('train_ss_v2_0304_5_v2') as f:
+with open('train.tsv') as f:  # change your own data here
 	for line in f.readlines()[1:]:
 		protein, peptide, label, pep_ss, prot_ss  = line.strip().split('\t')
 		pep_sequence.append(peptide)
@@ -371,10 +371,10 @@ for fold in range(n_fold):
     checkpoint = {'model':CAMP(),'model_state_dict':model.state_dict()}
     torch.save(checkpoint,f'./ckpts/model_cv_ckpts_{fold}.pkl')
 
-#     model_ckpt = load_checkpoint(f'./ckpts/model_full_ckpts_{fold}.pkl')
-#     model_ckpt=model_ckpt.to(device)
-#     test_loss_ckpt, test_AUC_ckpt, test_AUPR_ckpt = test(model_ckpt, test_loader, device, criterion)
-#     print(f"Test loss:{test_loss_ckpt:.4f}, AUC:{test_AUC_ckpt:.6f}, AUPR:{test_AUPR_ckpt:.6f}")
+    model_ckpt = load_checkpoint(f'./ckpts/model_cv_ckpts_{fold}.pkl') # for inference, can refer to these few lines.
+    model_ckpt=model_ckpt.to(device)
+    test_loss_ckpt, test_AUC_ckpt, test_AUPR_ckpt = test(model_ckpt, test_loader, device, criterion)
+    print(f"Test loss:{test_loss_ckpt:.4f}, AUC:{test_AUC_ckpt:.6f}, AUPR:{test_AUPR_ckpt:.6f}")
 
 
 print('fold mean auc & aupr', np.mean(test_AUC_list, axis=0),np.mean(test_AUPR_list, axis=0))
