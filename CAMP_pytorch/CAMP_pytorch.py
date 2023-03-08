@@ -89,7 +89,6 @@ def random_split(X, Y, fold=5):
 	skf = StratifiedKFold(n_splits=fold, shuffle=True)
 	train_idx_list, test_idx_list = [], []
 	for train_index, test_index in skf.split(X, Y):
-		train_index = range(X.shape[0])
 		train_idx_list.append(train_index)
 		test_idx_list.append(test_index)
 	return train_idx_list, test_idx_list
@@ -370,12 +369,12 @@ for fold in range(n_fold):
 
     print(f'Save model of epoch {e} with {n_fold}-fold cv')
     checkpoint = {'model':CAMP(),'model_state_dict':model.state_dict()}
-    torch.save(checkpoint,f'./ckpts/model_full_ckpts_{fold}.pkl')
+    torch.save(checkpoint,f'./ckpts/model_cv_ckpts_{fold}.pkl')
 
-    model_ckpt = load_checkpoint(f'./ckpts/model_full_ckpts_{fold}.pkl')
-    model_ckpt=model_ckpt.to(device)
-    test_loss_ckpt, test_AUC_ckpt, test_AUPR_ckpt = test(model_ckpt, test_loader, device, criterion)
-    print(f"Test loss:{test_loss_ckpt:.4f}, AUC:{test_AUC_ckpt:.6f}, AUPR:{test_AUPR_ckpt:.6f}")
+#     model_ckpt = load_checkpoint(f'./ckpts/model_full_ckpts_{fold}.pkl')
+#     model_ckpt=model_ckpt.to(device)
+#     test_loss_ckpt, test_AUC_ckpt, test_AUPR_ckpt = test(model_ckpt, test_loader, device, criterion)
+#     print(f"Test loss:{test_loss_ckpt:.4f}, AUC:{test_AUC_ckpt:.6f}, AUPR:{test_AUPR_ckpt:.6f}")
 
 
 print('fold mean auc & aupr', np.mean(test_AUC_list, axis=0),np.mean(test_AUPR_list, axis=0))
