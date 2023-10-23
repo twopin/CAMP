@@ -146,9 +146,12 @@ class CAMP(nn.Module):
     def __init__(self):
         super(CAMP,self).__init__()
         #self.config = config
-        self.embed_seq = nn.Embedding(65+1, 128) # padding_idx=0, vocab_size = 65/25, embedding_size=128
-        self.embed_ss = nn.Embedding(75+1,128)
-        self.embed_two = nn.Embedding(7+1,128)
+        self.embed_seq_pep = nn.Embedding(65+1, 128) # padding_idx=0, vocab_size = 65/25, embedding_size=128
+        self.embed_ss_pep = nn.Embedding(75+1,128)
+        self.embed_two_pep = nn.Embedding(7+1,128)
+	self.embed_seq_prot = nn.Embedding(65+1, 128) # padding_idx=0, vocab_size = 65/25, embedding_size=128
+        self.embed_ss_prot = nn.Embedding(75+1,128)
+        self.embed_two_prot = nn.Embedding(7+1,128)
         self.pep_convs = ConvNN(512,64,7)
         self.prot_convs = ConvNN(512,64,8)
         self.pep_fc = nn.Linear(3,128)    
@@ -171,12 +174,12 @@ class CAMP(nn.Module):
     #@torchsnooper.snoop()
     def forward(self, x_pep,x_prot,x_pep_ss,x_prot_ss,x_pep_2,x_prot_2,x_pep_dense,x_prot_dense):
 
-        pep_seq_emb = self.embed_seq(x_pep.long())#.type(torch.LongTensor))
-        prot_seq_emb = self.embed_seq(x_prot.long())#.type(torch.LongTensor))
-        pep_ss_emb = self.embed_ss(x_pep_ss.long())#type(torch.LongTensor))
-        prot_ss_emb = self.embed_ss(x_prot_ss.long())
-        pep_2_emb = self.embed_two(x_pep_2.long())
-        prot_2_emb = self.embed_two(x_prot_2.long())
+        pep_seq_emb = self.embed_seq_pep(x_pep.long())#.type(torch.LongTensor))
+        prot_seq_emb = self.embed_seq_prot(x_prot.long())#.type(torch.LongTensor))
+        pep_ss_emb = self.embed_ss_pep(x_pep_ss.long())#type(torch.LongTensor))
+        prot_ss_emb = self.embed_ss_prot(x_prot_ss.long())
+        pep_2_emb = self.embed_two_pep(x_pep_2.long())
+        prot_2_emb = self.embed_two_prot(x_prot_2.long())
         pep_dense = self.pep_fc(x_pep_dense)
         prot_dense = self.prot_fc(x_prot_dense)
         
