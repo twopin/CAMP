@@ -68,6 +68,9 @@ Since many researchers request for training CAMP on their own data, I re-impleme
 
 The python3+pytorch version is uploaded to CAMP_pytorch. You can use the script to train your own data and also if you just want to do some infererence, please check the last few lines in the script and use any of the uploaded checkpoints to make inference. Sorry for the lateness.
 
+### Recent Update 2023/12
+I updated the pytorch train script (originally updated 23/03) , the previously version contains a bug that may not run successfully. Also, I only uploaded the positive dataset without DRUGBANK part( license issue) but you can get access by manually query 'peptide category'(introduced in paper) to retrieve that part or just get a commercial license.
+
 ### License
 
 This software is copyrighted by Machine Learning and Computational Biology Group @ Tsinghua University.
